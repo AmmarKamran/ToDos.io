@@ -22,6 +22,12 @@ await db.collection('todos').insertMany([
 ])
 
 })
+//
+app.delete('/todos', async (req, res) => {
+    console.log("deleteMany called")
+    await db.collection('todos').deleteMany();
+    res.json('deleted All')
+})
 
 app.get('/', (req, res) => {
     res.json('did this work!')
