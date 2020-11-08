@@ -47,6 +47,13 @@ app.delete('/todos/:id', async (req, res) => {
 })
 
 
+
+app.put('/todos/:id', async (req, res) => {
+    await db.collection('todos').replaceOne({_id: ObjectID(req.params.id) }, req.body);
+    res.json('putted')
+})
+
 app.listen(3001, () => {
     console.log('work pls');
 })
+//
