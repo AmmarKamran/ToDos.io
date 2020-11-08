@@ -28,7 +28,7 @@ app.delete('/todos', async (req, res) => {
     await db.collection('todos').deleteMany();
     res.json('deleted All')
 })
-
+//
 app.get('/', (req, res) => {
     res.json('did this work!')
 })
@@ -40,10 +40,25 @@ app.get('/todos', async (req, res) => {
 })
 
 
+app.post('/todos/standardTemplate', async (req, res) => {
+    console.log("post standard called")
+    await db.collection('todos').insertMany([
+        {done: true, desc: 'Complete Application'},
+        {done: true, desc: 'Complete 2 Endpoints for Side Project'},
+        {done: false, desc: 'Invest in Tech Stocks Via Sarwa / Wahed'},
+        {done: false, desc: 'Community Involvement Volunteering'},
+        {done: false, desc: 'Finance Assignment'},
+        {done: false, desc: 'Computer Science Exam Prep'}
+    ])
+    res.json('posted standard template')
+})
+
 app.post('/todos', async (req, res) => {
+    console.log("post1 called")
     await db.collection('todos').insertOne(req.body);
     res.json('posted')
 })
+
 
 
 
