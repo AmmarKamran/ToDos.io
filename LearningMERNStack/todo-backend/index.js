@@ -16,9 +16,9 @@ MongoClient.connect('mongodb://localhost:27017/todos', { useUnifiedTopology: tru
 db = client.db('todos');
 await db.collection('todos').deleteMany();
 await db.collection('todos').insertMany([
-    {done: true, desc: 'write code'},
-    {done: true, desc: 'fix bugs'},
-    {done: false, desc: 'profit'},
+    {done: true, desc: 'write code', due: '01/01/2000', tag: 'Academics'},
+    {done: true, desc: 'fix bugs', due: '01/01/2000', tag: 'Finance'},
+    {done: false, desc: 'profit', due: '01/01/2000', tag: 'Home Chores'},
 ])
 
 })
@@ -43,12 +43,13 @@ app.get('/todos', async (req, res) => {
 app.post('/todos/standardTemplate', async (req, res) => {
     console.log("post standard called")
     await db.collection('todos').insertMany([
-        {done: true, desc: 'Complete Application'},
-        {done: true, desc: 'Complete 2 Endpoints for Side Project'},
-        {done: false, desc: 'Invest in Tech Stocks Via Sarwa / Wahed'},
-        {done: false, desc: 'Community Involvement Volunteering'},
-        {done: false, desc: 'Finance Assignment'},
-        {done: false, desc: 'Computer Science Exam Prep'}
+        {done: true, desc: 'Complete Application', due: '01/01/2000', tag: 'Academics'},
+        {done: true, desc: 'Complete 2 Endpoints for Side Project', due: '01/01/2000', tag: 'Career'},
+        {done: false, desc: 'Invest in Tech Stocks Via Sarwa / Wahed', due: '01/01/2000', tag: 'Finance'},
+        {done: false, desc: 'Community Involvement Volunteering', due: '01/01/2000', tag: 'Community'},
+        {done: false, desc: 'Laundry', due: '01/01/2000', tag: 'Home'},
+        {done: false, desc: 'Electricity + Phone Bills', due: '01/01/2000', tag: 'Home'},
+        {done: false, desc: 'Computer Science Exam Prep', due: '01/01/2000', tag: 'Academics'}
     ])
     res.json('posted standard template')
 })
